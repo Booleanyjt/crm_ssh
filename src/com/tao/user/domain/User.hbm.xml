@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.hibernate.subclassProxyInterface">
+	<class name="com.tao.user.domain.User" table="t_user">
+		<id name="uid" column="uid" >
+            <generator class="native"/>
+		</id>
+		<property name="username" column="username"  />
+		<property name="password" column="password"  />
+		<property name="address" column="address"  />
+		
+		<set name="uvisit">
+			<key column="uvid" ></key>
+			<one-to-many class="com.tao.visit.domain.Visit"/>
+		</set>
+	</class>
+	
+</hibernate-mapping>

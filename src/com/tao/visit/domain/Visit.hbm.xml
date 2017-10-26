@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.hibernate.subclassProxyInterface">
+	<class name="com.tao.visit.domain.Visit" table="t_visit">
+		<id name="vid" column="vid" >
+            <generator class="native"/>
+		</id>
+		<property name="vaddress" column="vaddress"  />
+		<property name="vcontent" column="vcontent"  />
+		
+		<many-to-one name="customer" class="com.tao.customer.domain.Customer" column="cvid"></many-to-one>
+		<many-to-one name="user" class="com.tao.user.domain.User" column="uvid"></many-to-one>
+	</class>
+	
+	
+	
+</hibernate-mapping>

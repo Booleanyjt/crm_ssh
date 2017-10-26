@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.hibernate.subclassProxyInterface">
+	<class name="com.tao.customer.domain.Customer" table="t_customer">
+		<id name="cid" column="cid" >
+            <generator class="native"/>
+		</id>
+		<property name="custName" column="custName"  />
+		<property name="custSource" column="custSource"  />
+		<property name="custPhone" column="custPhone"  />
+		<property name="custMobile" column="custMobile"  />
+		
+		<many-to-one name="dict" class="com.tao.utils.Dict" column="dictid"></many-to-one>
+		
+		<set name="linkMan" inverse="true" cascade="delete">
+			<key column="clid"></key>
+			<one-to-many class="com.tao.linkman.domain.LinkMan"/>
+		</set>
+		
+		<set name="cvisit" >
+			<key column="cvid"></key>
+			<one-to-many class="com.tao.visit.domain.Visit"/>
+		</set>
+	</class>
+	
+	
+	
+</hibernate-mapping>

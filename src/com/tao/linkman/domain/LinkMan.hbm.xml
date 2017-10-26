@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.hibernate.subclassProxyInterface">
+	<class name="com.tao.linkman.domain.LinkMan" table="t_linkman">
+		<id name="lid" column="lid" >
+            <generator class="native"/>
+		</id>
+		<property name="lkmName" column="lkmName"  />
+		<property name="lkmGender" column="lkmGender"  />
+		<property name="lkmPhone" column="lkmPhone"  />
+		<property name="lkmMobile" column="lkmMobile"  />
+		
+		<many-to-one name="customer" class="com.tao.customer.domain.Customer" column="clid"></many-to-one>
+		
+	</class>
+	
+	
+	
+</hibernate-mapping>

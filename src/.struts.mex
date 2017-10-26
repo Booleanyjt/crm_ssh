@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="default" location="225,10" size="280,315">
+    <action name="user_*" location="67,49" size="150,62">
+      <result name="loginsuccess">
+        <resourceEdge source="loginsuccess" routing="0" target="index.jsp" />
+      </result>
+      <result name="loginfail">
+        <resourceEdge source="loginfail" routing="0" target="login.jsp" />
+      </result>
+    </action>
+    <action name="customer_*" location="67,168" size="150,104">
+      <result name="add" />
+      <result name="list">
+        <resourceEdge source="list" routing="0" target="list.jsp" />
+      </result>
+      <result name="delete" />
+      <result name="editPre">
+        <resourceEdge source="editPre" routing="0" target="add.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="index.jsp" path="/index.jsp" location="570,52" size="150,55" />
+  <webResource name="login.jsp" path="/login.jsp" location="10,52" size="150,55" />
+  <webResource name="list.jsp" path="/jsp/customer/list.jsp" location="570,192" size="150,55" />
+  <webResource name="add.jsp" path="/jsp/customer/add.jsp" location="50,200" size="150,55" />
+</Struts2Diagram>
+

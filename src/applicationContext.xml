@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+
+
+	<!-- 配置c3p0连接池 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql:///crm_ssh"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value="123456"></property>
+	</bean>
+	
+	<!-- sessionfactory创建 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<!--注入数据库属性源 -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 加载配置文件 -->
+		<property name="configLocations" value="classpath:hibernate.cfg.xml"></property>
+	</bean>
+	
+	<!-- 事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	
+	<!-- scope="prototype"代表创建多实例 -->
+	<bean id="userAction" class="com.tao.user.action.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	
+	<bean id="userService" class="com.tao.user.service.UserService">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<bean id="userDao" class="com.tao.user.dao.UserDaoImpl">
+		<!-- <property name="hibernateTemplate" ref="hibernateTemplate"></property> -->
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	
+	
+	
+	<!-- <bean id="customerAction" class="com.tao.customer.action.CustomerAction" scope="prototype">
+		<property name="customerService" ref="customerService"></property>
+	</bean>
+	
+	<bean id="customerService" class="com.tao.customer.service.CustomerService">
+		<property name="customerDao" ref="customerDao"></property>
+	</bean>
+	
+	<bean id="customerDao" class="com.tao.customer.dao.CustomerDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean> -->
+	<import resource="classpath:customerbean.xml"/>
+	<import resource="classpath:linkmanbean.xml"/>
+	<import resource="classpath:visitbean.xml"/>
+	<!-- <import resource="classpath:applicationContext.xml"/> -->
+</beans>

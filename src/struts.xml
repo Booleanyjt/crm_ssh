@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.multipart.maxSize" value="100917969"></constant>
+
+    <package name="default" namespace="/" extends="struts-default">
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="loginsuccess">/index.jsp</result>
+			<result name="loginfail">/login.jsp</result>
+		</action>
+		
+		<action name="customer_*" class="customerAction" method="{1}">
+			<result name="add" type="redirectAction">customer_list.action</result>
+			<result name="list">/jsp/customer/list.jsp</result>
+			<result name="delete" type="redirectAction">customer_list.action</result>
+			<result name="editPre" >/jsp/customer/edit.jsp</result>
+			<result name="edit" type="redirectAction">customer_list.action</result>
+			<result name="listpage">/jsp/customer/page.jsp</result>
+			<result name="query">/jsp/customer/list.jsp</result>
+			<result name="queryPre">/jsp/customer/query.jsp</result>
+			<result name="countByLevel">/jsp/customer/countByLevel.jsp</result>
+			<result name="countBySource">/jsp/customer/countBySource.jsp</result>
+		</action>
+		
+		<action name="linkman_*" class="linkManAction" method="{1}">
+			<result name="list">/jsp/linkman/list.jsp</result>
+			<result name="addpre">/jsp/linkman/add.jsp</result>
+			<result name="add">/jsp/success.jsp</result>
+			<result name="editPre">/jsp/linkman/edit.jsp</result>
+			<result name="edit">/jsp/success.jsp</result>
+			<result name="delete">/jsp/success.jsp</result>
+			<result name="deletefail">/jsp/error.jsp</result>
+			<result name="input">/jsp/error.jsp</result>
+			<result name="queryPre">/jsp/linkman/query.jsp</result>
+		</action>
+		
+		
+		<action name="visit_*" class="visitAction" method="{1}">
+			<result name="addPre">/jsp/visit/add.jsp</result>
+			<result name="add">/jsp/success.jsp</result>
+			<result name="list">/jsp/visit/list.jsp</result>
+			<result name="queryPre">/jsp/visit/query.jsp</result>
+		</action>
+    </package>
+
+	
+	
+
+    <!-- Add packages here -->
+
+</struts>
